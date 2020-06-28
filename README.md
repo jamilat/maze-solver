@@ -3,9 +3,9 @@
 <body>
 A program written in Java as part of my Fundamentals of Programming II class. This program receives a text file containing a maze and outputs a path from start to finish.
   <H2>Information</H2>
-  Compilation:  javac MazeSolver.java
-  Execution:    java MazeSolver input.txt
-  Dependencies: Maze.java MazeLocation.java Stack.java StackRefBased.java 
+  Compilation:  javac MazeSolver.java <br>
+  Execution:    java MazeSolver input.txt <br>
+  Dependencies: Maze.java MazeLocation.java Stack.java StackRefBased.java <br>
 
   Maze.java:
   <ul>
