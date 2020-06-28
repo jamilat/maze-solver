@@ -2,11 +2,11 @@
 <H1>About</H1>
 <body>
 A program written in Java as part of my Fundamentals of Programming II class. This program receives a text file containing a maze and outputs a path from start to finish.
-
+<br>
 Compilation:  javac MazeSolver.java
 Execution:    java MazeSolver input.txt
 Dependencies: Maze.java MazeLocation.java Stack.java StackRefBased.java 
-
+<br>
 Maze.java:
 <ul>
   <li>Used to read in maze data from plain-text files, stores the maze in a some useful representation that permits querying the state of the maze</li>
