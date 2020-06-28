@@ -16,42 +16,31 @@
 
 public class MazeSolver {
 
-      /*Purpose:
-       *  To take a maze and output the path of the maze.
-       *Pre-conditions:
-       *  None
-       *Params:
-       *  maze(Maze) - the maze containing on the 1st, 2nd, 3rd lines:
-       *              dimensions (row, col)
-       *              entrance (row, col)
-       *              exit (row, col)
-       *Returns:
-       *  (String): the path that you must take to get from Start of the maze
-       *            to the end of the maze
-       *Examples:
-       *  if maze:
-       *    nothing
-       *    then returns: nothing
-       *
-       *  if maze does not have a path:
-       *    then throws a new mazeNoPathException()
-       *
-       *  if maze:
-       *    * *
-       *    * *
-       *    * *
-       *    then returns the path: "(0,1) (1,1) (2,1)"
-       *
-       *  if maze:
-       *    has dead ends
-       *    then backtrack to nearest fork in the path
-       *    if there is an unvisited spot of the fork
-       *    then go there
-       *    else
-       *    go to nearest unvisited fork
-       *    if no more unvisited forks
-       *    then throw new mazeNoPathException()
-       */
+/* Purpose: To take a maze and output the path of the maze.
+ * Params:
+ *  maze(Maze) - the maze containing on the 1st, 2nd, 3rd lines:
+ *              dimensions (row, col)
+ *              entrance (row, col)
+ *              exit (row, col)
+ * Returns:
+ *  (String): the path that you must take to get from Start of the maze
+ *            to the end of the maze
+ * Examples:
+ *  If text file containing maze:
+ *  Ex 1) is blank or non-exisent then return nothing
+ *  Ex 2) does not have a path from start to finish then throws a new mazeNoPathException()
+ *  Ex 3) is:
+ *    * *
+ *    * *
+ *    * *
+ *    then return the path: "(0,1) (1,1) (2,1)"
+ *
+ *  Ex 4) has dead ends then backtrack to nearest fork in the path, 
+ *    if there is an unvisited spot of the fork then go there
+ *    else go to nearest unvisited fork
+ *          if no more unvisited forks
+ *                then throw new mazeNoPathException()
+ */
 
 
 public static String findPath(Maze maze) {
@@ -63,55 +52,54 @@ public static String findPath(Maze maze) {
   int numRows = maze.getNumRows();
   int numCols = maze.getNumCols();
 
+           
+  try {
+    while ((!vis.isEmpty() && !vis.peek().equals(maze.getExit()))) {
+        MazeLocation curr = vis.peek();
+        unvis[curr.getRow()][curr.getCol()] = true;
 
-        try {
-          while ((!vis.isEmpty() && !vis.peek().equals(maze.getExit()))) {
-            MazeLocation curr = vis.peek();
-            unvis[curr.getRow()][curr.getCol()] = true;
-
-            if (open(getDown(curr), unvis, numRows, numCols)) {
+        if (open(getDown(curr), unvis, numRows, numCols)) {
               vis.push(getDown(curr));
-            }
-            else if (open(getLeft(curr), unvis, numRows, numCols)) {
-              vis.push(getLeft(curr));
-            }
-            else if (open(getRight(curr), unvis, numRows, numCols)) {
-              vis.push(getRight(curr));
-            }
-            else if (open(getUp(curr), unvis, numRows, numCols)) {
-              vis.push(getUp(curr));
-            }
-
-            else {
-              vis.pop();
-            }
-          }
         }
-        catch (StackEmptyException e) {
-            //System.out.println("There is no path from start to finish");
-          }
-          Stack<MazeLocation> newS = new StackRefBased<MazeLocation>();
-          while (vis.size() > 0) {
-            try {
-              newS.push(vis.pop());
-            }
-            catch (StackEmptyException e) {
+        else if (open(getLeft(curr), unvis, numRows, numCols)) {
+              vis.push(getLeft(curr));
+        }
+        else if (open(getRight(curr), unvis, numRows, numCols)) {
+              vis.push(getRight(curr));
+        }
+        else if (open(getUp(curr), unvis, numRows, numCols)) {
+              vis.push(getUp(curr));
+        }
 
-            }
-          }
-          while (newS.size() > 0) {
-            try {
+        else {
+              vis.pop();
+        }
+    }
+  }
+  catch (StackEmptyException e) {
+    System.out.println("There is no path from start to finish");
+  }
+  Stack<MazeLocation> newS = new StackRefBased<MazeLocation>();
+  while (vis.size() > 0) {
+      try {
+              newS.push(vis.pop());
+      }
+      catch (StackEmptyException e) {
+      }
+  }
+  while (newS.size() > 0) {
+      try {
               if (newS.size() == 1)
                 result += newS.pop();
               result += newS.pop() + " ";
-            }
-            catch (StackEmptyException e) {
+       }
+       catch (StackEmptyException e) {
               //System.out.println("Thrown: " + e);
-            }
-          }
-          //System.out.println("end result: " + result);
-          return result;
-      }
+       }
+  }
+  //System.out.println("end result: " + result);
+  return result;
+}
 public static Boolean open(MazeLocation pos, boolean[][] unvis, int numRows, int numCols) {
   int row = pos.getRow();
   int col = pos.getCol();
