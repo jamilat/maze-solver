@@ -5,7 +5,7 @@ A program written in Java as part of my Fundamentals of Programming II class. Th
   <H2>Information</H2>
   Compilation:  javac MazeSolver.java <br>
   Execution:    java MazeSolver input.txt <br>
-  Dependencies: Maze.java MazeLocation.java Stack.java StackRefBased.java <br>
+  Dependencies: Maze.java MazeLocation.java Stack.java StackRefBased.java <br><br>
 
   Maze.java:
   <ul>
@@ -18,7 +18,7 @@ A program written in Java as part of my Fundamentals of Programming II class. Th
   StackRefBased.java:
   <ul>
     <li>is a generic Stack, implemented using a linked list</li>
-    <li>implements Stack.java</li>
+    <li>implements Stack.java interface</li>
   </ul>
 
 </body>
