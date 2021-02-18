@@ -1,7 +1,7 @@
 # maze_solver
 <H1>About</H1>
 <body>
-A program written in Java as part of my Fundamentals of Programming II class. This program receives a text file containing a maze and outputs a path from start to finish.
+A program written in Java as part of my Fundamentals of Programming II (UVIC CSC226 Spring2020) class. This program receives a text file containing a maze and outputs a path from start to finish.
   <H2>Information</H2>
   Compilation:  javac MazeSolver.java <br>
   Execution:    java MazeSolver input.txt <br>
